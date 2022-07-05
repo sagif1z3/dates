@@ -1,39 +1,71 @@
 package com.sagi.dates.entities;
 
 
-import com.sagi.dates.enums.UserType;
+import com.sagi.dates.dto.UserDto;
+import com.sagi.dates.enums.GenderType;
+import com.sagi.dates.enums.OrientationType;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Users")
 public class UserEntity {
-    private int id;
+
+    @Id
+    @GeneratedValue
+    private long id;
+
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @Column(name = "age", nullable = false)
     private int age;
-    private String name;
-    private UserType userType;
-    private AddressEntity address;
+
+    @Column(name = "gender", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private GenderType genderType;
+
+    //סוג משיכה (הומו, סטרייט ושטויות כאלה)
+    @Column(name = "orientation", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private OrientationType orientationType;
 
     public UserEntity() {
     }
 
-    public UserEntity(int age, String name, UserType userType, AddressEntity address) {
-        this.age = age;
-        this.name = name;
-        this.userType = userType;
-        this.address = address;
+    public UserEntity(UserDto userDto) {
+        this.id = userDto.getId();
+        this.firstName = userDto.getFirstName();
+        this.lastName = userDto.getLastName();
+        this.age = userDto.getAge();
+        this.genderType = userDto.getGenderType();
+        this.orientationType = userDto.getOrientationType();
     }
 
-    public UserEntity(int id, int age, String name, UserType userType, AddressEntity address) {
-        this.id = id;
-        this.age = age;
-        this.name = name;
-        this.userType = userType;
-        this.address = address;
-    }
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getAge() {
@@ -44,27 +76,31 @@ public class UserEntity {
         this.age = age;
     }
 
-    public String getName() {
-        return name;
+    public GenderType getGenderType() {
+        return genderType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGenderType(GenderType genderType) {
+        this.genderType = genderType;
     }
 
-    public UserType getUserType() {
-        return userType;
+    public OrientationType getOrientationType() {
+        return orientationType;
     }
 
-    public void setUserType(UserType userType) {
-        this.userType = userType;
+    public void setOrientationType(OrientationType orientationType) {
+        this.orientationType = orientationType;
     }
 
-    public AddressEntity getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressEntity address) {
-        this.address = address;
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", genderType=" + genderType +
+                ", orientationType=" + orientationType +
+                '}';
     }
 }
