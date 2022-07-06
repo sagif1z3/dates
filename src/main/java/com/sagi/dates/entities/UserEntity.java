@@ -23,6 +23,9 @@ public class UserEntity {
     @Column(name = "age", nullable = false)
     private int age;
 
+    @Column(name = "address", nullable = false)
+    private String address;
+
     @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
     private GenderType genderType;
@@ -40,6 +43,7 @@ public class UserEntity {
         this.firstName = userDto.getFirstName();
         this.lastName = userDto.getLastName();
         this.age = userDto.getAge();
+        this.address = userDto.getAddress();
         this.genderType = userDto.getGenderType();
         this.orientationType = userDto.getOrientationType();
     }
@@ -92,6 +96,14 @@ public class UserEntity {
         this.orientationType = orientationType;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "UserEntity{" +
@@ -99,6 +111,7 @@ public class UserEntity {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
+                ", address='" + address + '\'' +
                 ", genderType=" + genderType +
                 ", orientationType=" + orientationType +
                 '}';

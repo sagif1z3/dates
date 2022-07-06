@@ -10,6 +10,7 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private int age;
+    private String address;
     private GenderType genderType;
     private OrientationType orientationType;
 
@@ -21,6 +22,7 @@ public class UserDto {
         this.firstName = userEntity.getFirstName();
         this.lastName = userEntity.getLastName();
         this.age = userEntity.getAge();
+        this.address = userEntity.getAddress();
         this.genderType = userEntity.getGenderType();
         this.orientationType = userEntity.getOrientationType();
     }
@@ -73,6 +75,14 @@ public class UserDto {
         this.orientationType = orientationType;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return "UserDto{" +
@@ -80,6 +90,7 @@ public class UserDto {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
+                ", address='" + address + '\'' +
                 ", genderType=" + genderType +
                 ", orientationType=" + orientationType +
                 '}';
